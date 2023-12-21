@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A92425992B3315EE004DF264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92425982B3315EE004DF264 /* AppDelegate.swift */; };
 		A924259B2B3315EE004DF264 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A924259A2B3315EE004DF264 /* SceneDelegate.swift */; };
-		A924259D2B3315EE004DF264 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A924259C2B3315EE004DF264 /* ViewController.swift */; };
+		A924259D2B3315EE004DF264 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A924259C2B3315EE004DF264 /* MemoViewController.swift */; };
 		A92425A22B3315EF004DF264 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A92425A12B3315EF004DF264 /* Assets.xcassets */; };
 		A92425A52B3315EF004DF264 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A92425A32B3315EF004DF264 /* LaunchScreen.storyboard */; };
 		A92425AE2B331673004DF264 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A92425AD2B331673004DF264 /* libsqlite3.0.tbd */; };
@@ -17,19 +17,23 @@
 		A92425B32B3316A9004DF264 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A92425B22B3316A9004DF264 /* SnapKit-Dynamic */; };
 		A92425B52B331789004DF264 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92425B42B331789004DF264 /* DatabaseManager.swift */; };
 		A92425B72B331A99004DF264 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92425B62B331A99004DF264 /* Memo.swift */; };
+		A9264F982B34142700A08BFA /* MemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9264F972B34142700A08BFA /* MemoTableViewCell.swift */; };
+		A9264F9E2B3415B100A08BFA /* MemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9264F9D2B3415B100A08BFA /* MemoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A92425952B3315EE004DF264 /* SwiftSQLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSQLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92425982B3315EE004DF264 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A924259A2B3315EE004DF264 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A924259C2B3315EE004DF264 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A924259C2B3315EE004DF264 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		A92425A12B3315EF004DF264 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A92425A42B3315EF004DF264 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A92425A62B3315EF004DF264 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A92425AD2B331673004DF264 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		A92425B42B331789004DF264 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		A92425B62B331A99004DF264 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
+		A9264F972B34142700A08BFA /* MemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTableViewCell.swift; sourceTree = "<group>"; };
+		A9264F9D2B3415B100A08BFA /* MemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +70,13 @@
 		A92425972B3315EE004DF264 /* SwiftSQLite */ = {
 			isa = PBXGroup;
 			children = (
+				A9264F992B34144700A08BFA /* Model */,
+				A9264F9A2B34145400A08BFA /* View */,
+				A9264F9B2B34146100A08BFA /* ViewModel */,
 				A92425982B3315EE004DF264 /* AppDelegate.swift */,
 				A924259A2B3315EE004DF264 /* SceneDelegate.swift */,
-				A924259C2B3315EE004DF264 /* ViewController.swift */,
-				A92425B42B331789004DF264 /* DatabaseManager.swift */,
-				A92425B62B331A99004DF264 /* Memo.swift */,
-				A92425A12B3315EF004DF264 /* Assets.xcassets */,
 				A92425A32B3315EF004DF264 /* LaunchScreen.storyboard */,
+				A92425A12B3315EF004DF264 /* Assets.xcassets */,
 				A92425A62B3315EF004DF264 /* Info.plist */,
 			);
 			path = SwiftSQLite;
@@ -84,6 +88,40 @@
 				A92425AD2B331673004DF264 /* libsqlite3.0.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A9264F992B34144700A08BFA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A92425B62B331A99004DF264 /* Memo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A9264F9A2B34145400A08BFA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A924259C2B3315EE004DF264 /* MemoViewController.swift */,
+				A9264F972B34142700A08BFA /* MemoTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9264F9B2B34146100A08BFA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A9264F9D2B3415B100A08BFA /* MemoViewModel.swift */,
+				A9264F9C2B3414CB00A08BFA /* LocalStorage */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A9264F9C2B3414CB00A08BFA /* LocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				A92425B42B331789004DF264 /* DatabaseManager.swift */,
+			);
+			path = LocalStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,7 +202,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A92425B52B331789004DF264 /* DatabaseManager.swift in Sources */,
-				A924259D2B3315EE004DF264 /* ViewController.swift in Sources */,
+				A9264F9E2B3415B100A08BFA /* MemoViewModel.swift in Sources */,
+				A9264F982B34142700A08BFA /* MemoTableViewCell.swift in Sources */,
+				A924259D2B3315EE004DF264 /* MemoViewController.swift in Sources */,
 				A92425992B3315EE004DF264 /* AppDelegate.swift in Sources */,
 				A924259B2B3315EE004DF264 /* SceneDelegate.swift in Sources */,
 				A92425B72B331A99004DF264 /* Memo.swift in Sources */,

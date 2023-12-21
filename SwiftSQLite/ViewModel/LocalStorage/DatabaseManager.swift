@@ -12,7 +12,7 @@ class DatabaseManager {
     var db: OpaquePointer?
     
     init() {
-        // 데이터베이스 경로 설정
+        // Set database path
         let fileURL = try! FileManager.default.url(
             for: .documentDirectory, 
             in: .userDomainMask,
@@ -21,10 +21,9 @@ class DatabaseManager {
         )
         .appendingPathComponent("myDatabase.sqlite")
         
-        // 데이터베이스 열기
+        // Open database
         if sqlite3_open(fileURL.path(percentEncoded: true), &self.db) == SQLITE_OK {
             print("Successfully opened database")
-            // 테이블 생성
             self.createMemoTable()
         } else {
             print("Error opening database")
@@ -32,7 +31,7 @@ class DatabaseManager {
     }
     
     deinit {
-        // 데이터베이스 닫기
+        // Close database
         if sqlite3_close(self.db) == SQLITE_OK {
             print("Successfully closed database")
         } else {
@@ -64,6 +63,7 @@ class DatabaseManager {
         }
     }
     
+    // MARK: CREATE
     func insertMemo(title: String, content: String) {
         let insertQuery = """
         INSERT INTO memos (id,title,content) VALUES (?,?,?);
@@ -72,9 +72,10 @@ class DatabaseManager {
         var statement: OpaquePointer?
         
         if sqlite3_prepare_v2(self.db, insertQuery, -1, &statement, nil) == SQLITE_OK {
+            // You should use NSString to insert String value properly.
             sqlite3_bind_text(statement, 2, NSString(string: title).utf8String, -1, nil)
             sqlite3_bind_text(statement, 3, NSString(string: content).utf8String, -1, nil)
-            print("인서트 - 타이틀: \(title), 콘텐트: \(content)")
+
             if sqlite3_step(statement) == SQLITE_DONE {
                 print("Inserted memo successfully")
             } else {
@@ -84,9 +85,11 @@ class DatabaseManager {
             let errorMessage = String(cString: sqlite3_errmsg(self.db)!)
             print("Error prepairing insert statement: \(errorMessage)")
         }
+        
         sqlite3_finalize(statement)
     }
     
+    // MARK: READ
     func retrieveMemos() -> [Memo] {
         var memos: [Memo] = []
         let selectQuery = """
@@ -112,17 +115,18 @@ class DatabaseManager {
         return memos
     }
     
-    func updateMemo(id: Int, title: String, content: String) {
+    // MARK: UPDATE
+    func updateMemo(_ memo: Memo) {
         let updateQuery = """
-        UPDATE memos SET title = '\(title)', content = '\(content)' WHERE id == \(id);
+        UPDATE memos SET title = '\(memo.title)', content = '\(memo.content)' WHERE id == \(memo.id);
         """
         
         var statement: OpaquePointer?
         
         if sqlite3_prepare(self.db, updateQuery, -1, &statement, nil) == SQLITE_OK {
-            sqlite3_bind_text(statement, 1, title, -1, nil)
-            sqlite3_bind_text(statement, 2, content, -1, nil)
-            sqlite3_bind_int(statement, 3, Int32(id))
+            sqlite3_bind_int(statement, 1, Int32(memo.id))
+            sqlite3_bind_text(statement, 2, NSString(string: memo.title).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 3, NSString(string: memo.content).utf8String, -1, nil)
             
             if sqlite3_step(statement) == SQLITE_DONE {
                 print("Updated memo successfully")
@@ -133,9 +137,11 @@ class DatabaseManager {
             let errorMessage = String(cString: sqlite3_errmsg(self.db)!)
             print("Error preparing update statement: \(errorMessage)")
         }
+        
         sqlite3_finalize(statement)
     }
     
+    // MARK: DELETE
     func deleteMemo(id: Int) {
         let deleteQuery = """
         DELETE FROM memos WHERE id = ?;
@@ -146,13 +152,16 @@ class DatabaseManager {
         if sqlite3_prepare_v2(self.db, deleteQuery, -1, &statement, nil) == SQLITE_OK {
             sqlite3_bind_int(statement, 1, Int32(id))
             
-            if sqlite3_step(statement) != SQLITE_DONE {
+            if sqlite3_step(statement) == SQLITE_DONE {
+                print("Deleted memo successfully")
+            } else {
                 print("Error deleting memo")
             }
         } else {
             let errorMessage = String(cString: sqlite3_errmsg(self.db)!)
             print("Error preparing delete statement: \(errorMessage)")
         }
+        
         sqlite3_finalize(statement)
     }
 }
